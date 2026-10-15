@@ -16,6 +16,23 @@ document.querySelectorAll('.drawer-link').forEach(link => {
   });
 });
 
+// Close drawer when clicking outside or pressing Escape
+document.addEventListener('click', (event) => {
+  if (drawer.classList.contains('open') && !drawer.contains(event.target) && !burger.contains(event.target)) {
+    drawer.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && drawer.classList.contains('open')) {
+    drawer.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
 // Intersection Observer
 const io = new IntersectionObserver((entries) => {
   entries.forEach(el => {
